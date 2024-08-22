@@ -1,0 +1,161 @@
+[gd_scene load_steps=12 format=3 uid="uid://dixveuwgp5c4l"]
+
+[ext_resource type="Script" path="res://Scripts/UI/HUD/bars.gd" id="1_esupi"]
+[ext_resource type="Texture2D" uid="uid://dqsl4rrciloin" path="res://Assets/Textures/UI/HUD/Bars/bar_background.png" id="2_2vay3"]
+[ext_resource type="Texture2D" uid="uid://djxk85h5a52ky" path="res://Assets/Textures/UI/HUD/Bars/bar_front.png" id="3_eux6y"]
+[ext_resource type="Texture2D" uid="uid://b55s36xl7ccwf" path="res://Assets/Textures/UI/HUD/Bars/health_bar_progress.png" id="4_srd5y"]
+[ext_resource type="Texture2D" uid="uid://bqs5aj6j1t5kk" path="res://Assets/Textures/UI/HUD/Bars/mana_bar_progress.png" id="5_kw0tu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ryylx"]
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_cl3xj"]
+resource_name = "full_health"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HealthBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(-2.5, -2.5, -2.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mmm6f"]
+resource_name = "low_health"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HealthBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2.5, -2.5, -2.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ampfm"]
+_data = {
+"full_health": SubResource("Animation_cl3xj"),
+"low_health": SubResource("Animation_mmm6f")
+}
+
+[sub_resource type="Animation" id="Animation_uuuxn"]
+resource_name = "full_mana"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(-2.5, -2.5, -2.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3i221"]
+_data = {
+"full_mana": SubResource("Animation_uuuxn")
+}
+
+[node name="Bars" type="VBoxContainer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -260.0
+offset_right = 128.0
+grow_vertical = 0
+rotation = 3.14159
+pivot_offset = Vector2(64, 130)
+size_flags_horizontal = 0
+size_flags_vertical = 8
+alignment = 2
+script = ExtResource("1_esupi")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+step = 0.1
+fill_mode = 8
+texture_under = ExtResource("2_2vay3")
+texture_over = ExtResource("3_eux6y")
+texture_progress = ExtResource("4_srd5y")
+
+[node name="Control" type="Control" parent="HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(64, 64)
+
+[node name="HealthLevel" type="Label" parent="HealthBar/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+label_settings = SubResource("LabelSettings_ryylx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthAnimPlayer" type="AnimationPlayer" parent="HealthBar"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ampfm")
+}
+
+[node name="ManaBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+step = 0.1
+fill_mode = 8
+texture_under = ExtResource("2_2vay3")
+texture_over = ExtResource("3_eux6y")
+texture_progress = ExtResource("5_kw0tu")
+
+[node name="Control" type="Control" parent="ManaBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(64, 64)
+
+[node name="ManaLevel" type="Label" parent="ManaBar/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_ryylx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaAnimPlayer" type="AnimationPlayer" parent="ManaBar"]
+libraries = {
+"": SubResource("AnimationLibrary_3i221")
+}
+
+[connection signal="animation_finished" from="HealthBar/HealthAnimPlayer" to="." method="_on_health_anim_player_animation_finished"]

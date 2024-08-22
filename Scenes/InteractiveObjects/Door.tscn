@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgatqfilw3igp"]
+
+[ext_resource type="Script" path="res://Scripts/InteractiveObjects/door.gd" id="1_telod"]
+[ext_resource type="PackedScene" uid="uid://brg50fbdxb8b3" path="res://Scenes/Components/InteractionComponent.tscn" id="2_eusyc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5od0q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aqln0"]
+size = Vector3(1, 2, 1)
+
+[node name="Door" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_telod")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_5od0q")
+
+[node name="InteractionComponent" parent="." instance=ExtResource("2_eusyc")]
+instant = true
+time = 0.1
+info = "Open"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00010252, 0)
+shape = SubResource("BoxShape3D_aqln0")

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bjywd2lp5fbjf"]
+
+[ext_resource type="Script" path="res://Scripts/Items/item_data.gd" id="1_vuxt1"]
+[ext_resource type="Texture2D" uid="uid://c8d0j7t4n614e" path="res://icon.svg" id="2_asih6"]
+
+[resource]
+script = ExtResource("1_vuxt1")
+item_name = "Debug"
+item_description = "DEBUG"
+texture = ExtResource("2_asih6")
+item_type = 0
+damage_type = 0
+damage = 0
+cooldown = 1.0
+mana_cost = 0
+limited_use = false
+number_uses = 1

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cwa3ee5rmb8sb"]
+
+[ext_resource type="Script" path="res://Scripts/Items/item_data.gd" id="1_dbtgb"]
+[ext_resource type="Texture2D" uid="uid://dhmmwua6qre0i" path="res://Assets/Textures/UI/Skills/ice_skill_icon_2.png" id="2_xiope"]
+
+[resource]
+script = ExtResource("1_dbtgb")
+item_name = "Blazeborne Staff"
+item_description = "Use it to shoot fireballs. Charge it to create a destructive meteor."
+texture = ExtResource("2_xiope")
+item_type = 0
+damage_type = 1
+damage = 10
+cooldown = 1.5
+mana_cost = 33
+limited_use = false
+number_uses = 1

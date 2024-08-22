@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bml6p2mgus8p4"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Modules/test_melee_module.gd" id="1_wfgb2"]
+
+[node name="TestMeleeModule" type="Node3D"]
+script = ExtResource("1_wfgb2")
+cooldown = 2.0

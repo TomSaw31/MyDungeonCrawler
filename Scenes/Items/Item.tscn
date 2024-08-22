@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmfidaj3c5abb"]
+
+[ext_resource type="Script" path="res://Scripts/Items/item.gd" id="1_fa12o"]
+[ext_resource type="PackedScene" uid="uid://brg50fbdxb8b3" path="res://Scenes/Components/InteractionComponent.tscn" id="2_jbqht"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_di4ef"]
+
+[node name="Item" type="StaticBody3D"]
+top_level = true
+script = ExtResource("1_fa12o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_di4ef")
+
+[node name="InteractionBehavior" parent="." instance=ExtResource("2_jbqht")]
+info = "Collect"

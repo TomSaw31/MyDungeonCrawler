@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://7lwq2c7kk01"]
+
+[ext_resource type="Script" path="res://Scripts/Items/CustomWeapons/blazeborne_staff.gd" id="1_mas4n"]
+
+[node name="Item" type="Node3D"]
+top_level = true
+script = ExtResource("1_mas4n")

@@ -1,0 +1,639 @@
+[gd_scene load_steps=34 format=3 uid="uid://bldwuuh7wlwo4"]
+
+[ext_resource type="Script" path="res://Scripts/UI/SkillTree/skill_tree.gd" id="1_8t5s4"]
+[ext_resource type="PackedScene" uid="uid://6odsri1xhnxe" path="res://Scenes/UI/SkillButton.tscn" id="1_ktm1k"]
+[ext_resource type="PackedScene" uid="uid://bwe3lcumnockc" path="res://Scenes/UI/UnlockedSkill.tscn" id="2_tv0a0"]
+[ext_resource type="Texture2D" uid="uid://f7ogk55sousu" path="res://Assets/Textures/UI/HUD/Skills/center_skill_tree.png" id="4_e24b8"]
+[ext_resource type="Texture2D" uid="uid://cd6h6d3bcu8fc" path="res://Assets/Textures/UI/HUD/Skills/damage_skill_1.png" id="5_i3udb"]
+[ext_resource type="Texture2D" uid="uid://dg2xd6geluujy" path="res://Assets/Textures/UI/HUD/Skills/damage_skill_2.png" id="6_5ehcp"]
+[ext_resource type="Texture2D" uid="uid://bw0kpotdr462c" path="res://Assets/Textures/UI/HUD/Skills/health_skill_1.png" id="7_m3r0v"]
+[ext_resource type="Texture2D" uid="uid://du1h42en6g1oy" path="res://Assets/Textures/UI/HUD/Skills/damage_skill_3.png" id="7_wmvx6"]
+[ext_resource type="Texture2D" uid="uid://bo4wjx7q245hc" path="res://Assets/Textures/UI/HUD/Skills/health_skill_2.png" id="8_hnbf5"]
+[ext_resource type="Texture2D" uid="uid://b3drcql8h3e6r" path="res://Assets/Textures/UI/HUD/Skills/critical_strike_skill_1.png" id="8_hs2yy"]
+[ext_resource type="Texture2D" uid="uid://5qxd81fitvk8" path="res://Assets/Textures/UI/HUD/Skills/critical_strike_skill_2.png" id="9_h1n73"]
+[ext_resource type="Texture2D" uid="uid://2aaj83lel4ge" path="res://Assets/Textures/UI/HUD/Skills/health_skill_3.png" id="9_t01g8"]
+[ext_resource type="Texture2D" uid="uid://ckktg3b1hajsx" path="res://Assets/Textures/UI/HUD/Skills/critical_strike_skill_3.png" id="10_ekoid"]
+[ext_resource type="Texture2D" uid="uid://2rq4se2c8h1i" path="res://Assets/Textures/UI/HUD/Skills/mana_skill_1.png" id="10_uqf8c"]
+[ext_resource type="Texture2D" uid="uid://c2bf80ask4i7d" path="res://Assets/Textures/UI/HUD/Skills/mana_skill_2.png" id="11_c7o6a"]
+[ext_resource type="Texture2D" uid="uid://cbl722ik0ajrn" path="res://Assets/Textures/UI/HUD/Skills/speed_skill_1.png" id="12_10rwe"]
+[ext_resource type="Texture2D" uid="uid://dvy7qxft11xrw" path="res://Assets/Textures/UI/HUD/Skills/mana_skill_3.png" id="12_qprta"]
+[ext_resource type="Texture2D" uid="uid://cuiev5anpc3bb" path="res://Assets/Textures/UI/HUD/Skills/speed_skill_2.png" id="13_k1p0o"]
+[ext_resource type="Texture2D" uid="uid://6wxllvnn6c1w" path="res://Assets/Textures/UI/HUD/Skills/speed_skill_3.png" id="14_b8osb"]
+[ext_resource type="Texture2D" uid="uid://cs1oxcslp4ckk" path="res://Assets/Textures/UI/HUD/Skills/resistance_skill_1.png" id="17_ovau7"]
+[ext_resource type="Texture2D" uid="uid://deqrg2sr7i1x6" path="res://Assets/Textures/UI/HUD/Skills/resistance_skill_2.png" id="18_r75db"]
+[ext_resource type="Texture2D" uid="uid://b3buo01hgrf6t" path="res://Assets/Textures/UI/HUD/Skills/resistance_skill_3.png" id="19_rp62i"]
+[ext_resource type="Texture2D" uid="uid://cfkurrdbp8uif" path="res://Assets/Textures/UI/HUD/Skills/skill_point.png" id="23_d1o85"]
+
+[sub_resource type="Gradient" id="Gradient_50t0a"]
+resource_local_to_scene = true
+colors = PackedColorArray(0.239216, 0.239216, 0.478431, 1, 0.239216, 0.239216, 0.478431, 1)
+
+[sub_resource type="Gradient" id="Gradient_ysycy"]
+resource_local_to_scene = true
+interpolation_mode = 2
+colors = PackedColorArray(0.239216, 0.239216, 0.478431, 1, 0.239216, 0.239216, 0.478431, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qo8s5"]
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8hkcs"]
+font_size = 20
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mtivf"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_hkjvt"]
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_jsx5m"]
+resource_name = "unlocking"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos/PanelContainer/SkillIconAnimation:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/ContainerInfos/InfoVBox/HBoxPoints/PanelContainer/SkillPointsAnimation:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer/ContainerInfos/InfoVBox/HBoxPoints/PanelContainer/SkillPointsAnimation:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, -2.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxj8y"]
+_data = {
+"unlocking": SubResource("Animation_jsx5m")
+}
+
+[sub_resource type="Animation" id="Animation_gpc5s"]
+resource_name = "rainbow"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/ContainerInfos/InfoVBox/HBoxPoints:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.702165, 0.777598, 1, 1), Color(0.894118, 0.694118, 1, 1), Color(1, 0.67451, 0.784314, 1), Color(1, 0.705882, 0.576471, 1), Color(0.960784, 0.756863, 0, 1), Color(0.380392, 0.92549, 0, 1), Color(0, 0.909804, 0.796078, 1), Color(0.396078, 0.85098, 1, 1), Color(0.702165, 0.777598, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dfh25"]
+_data = {
+"rainbow": SubResource("Animation_gpc5s")
+}
+
+[node name="SkillTree" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_8t5s4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="ContainerUnlocked" type="PanelContainer" parent="HBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Background" type="ColorRect" parent="HBoxContainer/ContainerUnlocked"]
+layout_mode = 2
+color = Color(0, 0.157659, 0.347832, 1)
+
+[node name="UnlockedSkillsVBox" type="VBoxContainer" parent="HBoxContainer/ContainerUnlocked"]
+layout_mode = 2
+alignment = 1
+
+[node name="UnlockedDamageSkill" parent="HBoxContainer/ContainerUnlocked/UnlockedSkillsVBox" instance=ExtResource("2_tv0a0")]
+layout_mode = 2
+size_flags_horizontal = 4
+s_name = "default"
+
+[node name="UnlockedResistanceSkill" parent="HBoxContainer/ContainerUnlocked/UnlockedSkillsVBox" instance=ExtResource("2_tv0a0")]
+layout_mode = 2
+size_flags_horizontal = 4
+s_name = "default"
+
+[node name="UnlockedSpeedSkill" parent="HBoxContainer/ContainerUnlocked/UnlockedSkillsVBox" instance=ExtResource("2_tv0a0")]
+layout_mode = 2
+size_flags_horizontal = 4
+s_name = "default"
+
+[node name="UnlockedHealthSkill" parent="HBoxContainer/ContainerUnlocked/UnlockedSkillsVBox" instance=ExtResource("2_tv0a0")]
+layout_mode = 2
+size_flags_horizontal = 4
+s_name = "default"
+
+[node name="UnlockedManaSkill" parent="HBoxContainer/ContainerUnlocked/UnlockedSkillsVBox" instance=ExtResource("2_tv0a0")]
+layout_mode = 2
+size_flags_horizontal = 4
+s_name = "default"
+
+[node name="UnlockedCriticalHitSkill" parent="HBoxContainer/ContainerUnlocked/UnlockedSkillsVBox" instance=ExtResource("2_tv0a0")]
+layout_mode = 2
+size_flags_horizontal = 4
+s_name = "default"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 0
+
+[node name="Background2" type="ColorRect" parent="HBoxContainer/VBoxContainer"]
+z_index = 3
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0.157659, 0.347832, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 15.0
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.239216, 0.239216, 0.478431, 1)
+
+[node name="Center" type="Control" parent="HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SkillButton" parent="HBoxContainer/VBoxContainer/PanelContainer/Center" instance=ExtResource("1_ktm1k")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+skill_name = "default"
+
+[node name="backline2" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/LinkBackground" index="1"]
+gradient = SubResource("Gradient_50t0a")
+
+[node name="backline3" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/LinkBackground" index="2"]
+gradient = SubResource("Gradient_ysycy")
+
+[node name="Background" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton" index="4"]
+texture = ExtResource("4_e24b8")
+
+[node name="Damage" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = -48.0
+offset_top = -83.145
+offset_right = 16.0
+offset_bottom = -19.145
+texture_normal = ExtResource("5_i3udb")
+skill_name = "Damage I"
+skill_description = "+ 10 Damage"
+skill_type = "damage"
+unlocked_skill_button = NodePath("../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedDamageSkill")
+neighbour1 = NodePath("../CriticalHit")
+neighbour2 = NodePath("../Resistance")
+
+[node name="Damage2" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/Damage" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = -48.0
+offset_top = -83.145
+offset_right = 16.0
+offset_bottom = -19.145
+disabled = true
+texture_normal = ExtResource("6_5ehcp")
+skill_name = "Damage II"
+skill_description = "+ 20 Damage"
+skill_type = "damage"
+skill_level = 2
+unlocked_skill_button = NodePath("../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedDamageSkill")
+neighbour1 = NodePath("../../CriticalHit/CriticalHit2")
+neighbour2 = NodePath("../../Resistance/Resistance2")
+
+[node name="Damage3" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/Damage/Damage2" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = -48.0
+offset_top = -83.145
+offset_right = 16.0
+offset_bottom = -19.145
+disabled = true
+texture_normal = ExtResource("7_wmvx6")
+skill_name = "Damage III"
+skill_description = "+ 30 Damage"
+skill_type = "damage"
+skill_level = 3
+unlocked_skill_button = NodePath("../../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedDamageSkill")
+neighbour1 = NodePath("../../../CriticalHit/CriticalHit2/CriticalHit3")
+neighbour2 = NodePath("../../../Resistance/Resistance2/Resistance3")
+
+[node name="Resistance" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = -96.0
+offset_right = -32.0
+offset_bottom = 64.0
+texture_normal = ExtResource("17_ovau7")
+skill_name = "Resistance I"
+skill_description = "+ 25% Resistance"
+skill_type = "resistance"
+unlocked_skill_button = NodePath("../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedResistanceSkill")
+neighbour1 = NodePath("../Damage")
+neighbour2 = NodePath("../Speed")
+
+[node name="Resistance2" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/Resistance" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = -96.0
+offset_right = -32.0
+offset_bottom = 64.0
+disabled = true
+texture_normal = ExtResource("18_r75db")
+skill_name = "Resistance II"
+skill_description = "+ 50% Resistance"
+skill_type = "resistance"
+skill_level = 2
+unlocked_skill_button = NodePath("../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedResistanceSkill")
+neighbour1 = NodePath("../../Damage/Damage2")
+neighbour2 = NodePath("../../Speed/Speed2")
+
+[node name="Resistance3" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/Resistance/Resistance2" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = -96.0
+offset_right = -32.0
+offset_bottom = 64.0
+disabled = true
+texture_normal = ExtResource("19_rp62i")
+skill_name = "Resistance III"
+skill_description = "+ 100% Resistance"
+skill_type = "resistance"
+skill_level = 3
+unlocked_skill_button = NodePath("../../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedResistanceSkill")
+neighbour1 = NodePath("../../../Damage/Damage2/Damage3")
+neighbour2 = NodePath("../../../Speed/Speed2/Speed3")
+
+[node name="Speed" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 83.145
+offset_right = 16.0
+offset_bottom = 147.145
+texture_normal = ExtResource("12_10rwe")
+skill_name = "Speed I"
+skill_description = "+ 25% Speed"
+skill_type = "speed"
+unlocked_skill_button = NodePath("../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedSpeedSkill")
+neighbour1 = NodePath("../Resistance")
+neighbour2 = NodePath("../Health")
+
+[node name="Speed2" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/Speed" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 83.145
+offset_right = 16.0
+offset_bottom = 147.145
+disabled = true
+texture_normal = ExtResource("13_k1p0o")
+skill_name = "Speed II"
+skill_description = "+ 50% Speed"
+skill_type = "speed"
+skill_level = 2
+unlocked_skill_button = NodePath("../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedSpeedSkill")
+neighbour1 = NodePath("../../Resistance/Resistance2")
+neighbour2 = NodePath("../../Health/Health2")
+
+[node name="Speed3" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/Speed/Speed2" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 83.145
+offset_right = 16.0
+offset_bottom = 147.145
+disabled = true
+texture_normal = ExtResource("14_b8osb")
+skill_name = "Speed III"
+skill_description = "+ 100% Speed"
+skill_type = "speed"
+skill_level = 3
+unlocked_skill_button = NodePath("../../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedSpeedSkill")
+neighbour1 = NodePath("../../../Resistance/Resistance2/Resistance3")
+neighbour2 = NodePath("../../../Health/Health2/Health3")
+
+[node name="Health" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 83.145
+offset_right = 112.0
+offset_bottom = 147.145
+texture_normal = ExtResource("7_m3r0v")
+skill_name = "Health I"
+skill_description = "+ 25% Health"
+skill_type = "health"
+unlocked_skill_button = NodePath("../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedHealthSkill")
+neighbour1 = NodePath("../Speed")
+neighbour2 = NodePath("../Mana")
+
+[node name="Health2" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/Health" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 83.145
+offset_right = 112.0
+offset_bottom = 147.145
+disabled = true
+texture_normal = ExtResource("8_hnbf5")
+skill_name = "Health II"
+skill_description = "+ 50% Health"
+skill_type = "health"
+skill_level = 2
+unlocked_skill_button = NodePath("../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedHealthSkill")
+neighbour1 = NodePath("../../Speed/Speed2")
+neighbour2 = NodePath("../../Mana/Mana2")
+
+[node name="Health3" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/Health/Health2" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 83.145
+offset_right = 112.0
+offset_bottom = 147.145
+disabled = true
+texture_normal = ExtResource("9_t01g8")
+skill_name = "Health III"
+skill_description = "+ 100% Health"
+skill_type = "health"
+skill_level = 3
+unlocked_skill_button = NodePath("../../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedHealthSkill")
+neighbour1 = NodePath("../../../Speed/Speed2/Speed3")
+neighbour2 = NodePath("../../../Mana/Mana2/Mana3")
+
+[node name="Mana" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = 96.0
+offset_right = 160.0
+offset_bottom = 64.0
+texture_normal = ExtResource("10_uqf8c")
+skill_name = "Mana I"
+skill_description = "+ 25% Mana"
+skill_type = "mana"
+unlocked_skill_button = NodePath("../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedManaSkill")
+neighbour1 = NodePath("../Health")
+neighbour2 = NodePath("../CriticalHit")
+
+[node name="Mana2" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/Mana" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = 96.0
+offset_right = 160.0
+offset_bottom = 64.0
+disabled = true
+texture_normal = ExtResource("11_c7o6a")
+skill_name = "Mana I"
+skill_description = "+ 50% Mana"
+skill_type = "mana"
+skill_level = 2
+unlocked_skill_button = NodePath("../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedManaSkill")
+neighbour1 = NodePath("../../Health/Health2")
+neighbour2 = NodePath("../../CriticalHit/CriticalHit2")
+
+[node name="Mana3" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/Mana/Mana2" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = 96.0
+offset_right = 160.0
+offset_bottom = 64.0
+disabled = true
+texture_normal = ExtResource("12_qprta")
+skill_name = "Mana III"
+skill_description = "+ 100% Mana"
+skill_type = "mana"
+skill_level = 3
+unlocked_skill_button = NodePath("../../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedManaSkill")
+neighbour1 = NodePath("../../../Health/Health2/Health3")
+neighbour2 = NodePath("../../../CriticalHit/CriticalHit2/CriticalHit3")
+
+[node name="CriticalHit" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = -83.145
+offset_right = 112.0
+offset_bottom = -19.145
+texture_normal = ExtResource("8_hs2yy")
+skill_name = "Critical Hit I"
+skill_description = "+ 5% Critical Hit"
+skill_type = "critical_hit"
+unlocked_skill_button = NodePath("../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedCriticalHitSkill")
+neighbour1 = NodePath("../Mana")
+neighbour2 = NodePath("../Damage")
+
+[node name="CriticalHit2" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/CriticalHit" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = -83.145
+offset_right = 112.0
+offset_bottom = -19.145
+disabled = true
+texture_normal = ExtResource("9_h1n73")
+skill_name = "Critical Hit II"
+skill_description = "+ 10% Critical Hit"
+skill_type = "critical_hit"
+skill_level = 2
+unlocked_skill_button = NodePath("../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedCriticalHitSkill")
+neighbour1 = NodePath("../../Mana/Mana2")
+neighbour2 = NodePath("../../Damage/Damage2")
+
+[node name="CriticalHit3" parent="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton/CriticalHit/CriticalHit2" node_paths=PackedStringArray("unlocked_skill_button", "neighbour1", "neighbour2") instance=ExtResource("1_ktm1k")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = -83.145
+offset_right = 112.0
+offset_bottom = -19.145
+disabled = true
+texture_normal = ExtResource("10_ekoid")
+skill_name = "Critical Hit III"
+skill_description = "+ 15% Critical Hit"
+skill_type = "critical_hit"
+skill_level = 3
+unlocked_skill_button = NodePath("../../../../../../../ContainerUnlocked/UnlockedSkillsVBox/UnlockedCriticalHitSkill")
+neighbour1 = NodePath("../../../Mana/Mana2/Mana3")
+neighbour2 = NodePath("../../../Damage/Damage2/Damage3")
+
+[node name="Background" type="ColorRect" parent="HBoxContainer/VBoxContainer"]
+z_index = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0.156863, 0.34902, 1)
+
+[node name="ContainerInfos" type="PanelContainer" parent="HBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Background" type="ColorRect" parent="HBoxContainer/ContainerInfos"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0.157659, 0.347832, 1)
+
+[node name="InfoVBox" type="VBoxContainer" parent="HBoxContainer/ContainerInfos"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="VBoxInfos" type="VBoxContainer" parent="HBoxContainer/ContainerInfos/InfoVBox"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="SkillName" type="Label" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_qo8s5")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SkillIcon" type="TextureRect" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos/PanelContainer"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SkillIconAnimation" type="TextureRect" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos/PanelContainer"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos/PanelContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("23_d1o85")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="SkillDescription" type="Label" parent="HBoxContainer/ContainerInfos/InfoVBox/VBoxInfos"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_8hkcs")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxPoints" type="HBoxContainer" parent="HBoxContainer/ContainerInfos/InfoVBox"]
+modulate = Color(0.702165, 0.777598, 1, 1)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+alignment = 1
+
+[node name="SkillPointTexture" type="TextureRect" parent="HBoxContainer/ContainerInfos/InfoVBox/HBoxPoints"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("23_d1o85")
+expand_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/ContainerInfos/InfoVBox/HBoxPoints"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="SkillPointsAnimation" type="Label" parent="HBoxContainer/ContainerInfos/InfoVBox/HBoxPoints/PanelContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_mtivf")
+
+[node name="SkillPointsCounter" type="Label" parent="HBoxContainer/ContainerInfos/InfoVBox/HBoxPoints/PanelContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_hkjvt")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/ContainerInfos/InfoVBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cxj8y")
+}
+
+[node name="SkillPointColor" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dfh25")
+}
+
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/PanelContainer" to="." method="_on_panel_container_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/VBoxContainer/PanelContainer" to="." method="_on_panel_container_mouse_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="HBoxContainer/VBoxContainer/PanelContainer/Center/SkillButton"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://8qeru18giarf"]
+
+[ext_resource type="PackedScene" uid="uid://b6pi63knhh4k4" path="res://Assets/Rooms/TestTemple/MainRoom/MainRoom.tscn" id="1_ny5ju"]
+[ext_resource type="Resource" uid="uid://ctp6vqb86l0ww" path="res://Assets/Resources/Items/seasurge_staff.tres" id="3_cnpv8"]
+[ext_resource type="PackedScene" uid="uid://bt80ajcte7a31" path="res://Scenes/InteractiveObjects/Chest.tscn" id="3_gtuso"]
+[ext_resource type="PackedScene" uid="uid://b6sxl0taqpfxe" path="res://Scenes/Behaviors/WaterBehavior.tscn" id="4_1ygfr"]
+[ext_resource type="PackedScene" uid="uid://c18tp76idhudy" path="res://Scenes/Player/Player.tscn" id="5_dw8th"]
+[ext_resource type="PackedScene" uid="uid://cgatqfilw3igp" path="res://Scenes/InteractiveObjects/Door.tscn" id="6_0bopd"]
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MainRoom" parent="." instance=ExtResource("1_ny5ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="chest" parent="." instance=ExtResource("3_gtuso")]
+transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0, 0, -3)
+item_data = ExtResource("3_cnpv8")
+
+[node name="WaterBehavior" parent="chest" instance=ExtResource("4_1ygfr")]
+
+[node name="Player" parent="." instance=ExtResource("5_dw8th")]
+
+[node name="Door" parent="." instance=ExtResource("6_0bopd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)

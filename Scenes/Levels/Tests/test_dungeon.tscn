@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4ft6jfqohdrh"]
+
+[ext_resource type="Script" path="res://Scripts/Levels/test_dungeon.gd" id="1_gdpmx"]
+[ext_resource type="PackedScene" uid="uid://c18tp76idhudy" path="res://Scripts/Player/Player/Player.tscn" id="1_wjyg8"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_gdpmx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_wjyg8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47646, 0)

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2bl8obos13fc"]
+
+[ext_resource type="Script" path="res://Scripts/UI/command_line.gd" id="1_hm455"]
+
+[node name="CommandLine" type="LineEdit"]
+custom_minimum_size = Vector2(256, 32)
+placeholder_text = "Enter commands"
+caret_blink = true
+caret_blink_interval = 0.5
+script = ExtResource("1_hm455")
+
+[connection signal="text_submitted" from="." to="." method="_on_text_submitted"]

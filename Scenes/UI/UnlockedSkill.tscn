@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwe3lcumnockc"]
+
+[ext_resource type="Script" path="res://Scripts/UI/SkillTree/unlocked_skill.gd" id="2_48b1b"]
+[ext_resource type="Texture2D" uid="uid://ww6wobyafgtk" path="res://Assets/Textures/UI/HUD/Skills/unlocked_0.png" id="2_o1l0s"]
+
+[sub_resource type="Animation" id="Animation_mwksg"]
+resource_name = "hovering"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_i1kyr"]
+resource_name = "unlocking"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundFading:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackgroundFading:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lg4nc"]
+_data = {
+"hovering": SubResource("Animation_mwksg"),
+"unlocking": SubResource("Animation_i1kyr")
+}
+
+[node name="TextureButton" type="TextureButton"]
+custom_minimum_size = Vector2(56, 56)
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(28, 28)
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("2_48b1b")
+
+[node name="Background" type="TextureRect" parent="."]
+show_behind_parent = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(28, 28)
+texture = ExtResource("2_o1l0s")
+expand_mode = 1
+
+[node name="BackgroundFading" type="TextureRect" parent="."]
+show_behind_parent = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(28, 28)
+texture = ExtResource("2_o1l0s")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lg4nc")
+}
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

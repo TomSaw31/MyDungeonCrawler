@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://ctp6vqb86l0ww"]
+
+[ext_resource type="Script" path="res://Scripts/Items/item_data.gd" id="1_6t7ve"]
+[ext_resource type="PackedScene" uid="uid://b8hltkxcwdcj3" path="res://Scenes/Items/CustomItems/Items/SeasurgeStaff.tscn" id="1_djbs7"]
+[ext_resource type="Texture2D" uid="uid://bx77kp0fuvsvw" path="res://Assets/Textures/UI/Skills/ice_skill_icon_1.png" id="2_x2cm7"]
+
+[resource]
+script = ExtResource("1_6t7ve")
+item_name = "Seasurge Staff"
+item_description = "Use it on water to create a powerful water bubble."
+texture = ExtResource("2_x2cm7")
+item_scene = ExtResource("1_djbs7")
+item_type = 0
+damage_type = 2
+damage = 10
+cooldown = 1.5
+mana_cost = 66.0
+limited_use = false
+number_uses = 1

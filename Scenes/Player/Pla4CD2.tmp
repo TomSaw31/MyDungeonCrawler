@@ -1,0 +1,115 @@
+[gd_scene load_steps=16 format=3 uid="uid://c18tp76idhudy"]
+
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_htgsc"]
+[ext_resource type="PackedScene" uid="uid://g0aipunenny8" path="res://Scenes/Player/Items/CustomItems/Swords/DefaultSword.tscn" id="2_gbd60"]
+[ext_resource type="Script" path="res://Scripts/States/state_machine.gd" id="2_hl7ng"]
+[ext_resource type="PackedScene" uid="uid://b0ehbhmhrh8ph" path="res://Scenes/Player/Items/CustomItem.tscn" id="3_xbeow"]
+[ext_resource type="Resource" uid="uid://ctp6vqb86l0ww" path="res://Assets/Resources/Items/seasurge_staff.tres" id="4_emh2p"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/default_state.gd" id="5_4n6ui"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/free_camera_state.gd" id="6_84eqe"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/inactive_state.gd" id="6_472j7"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/inventory_state.gd" id="6_fqmj7"]
+[ext_resource type="PackedScene" uid="uid://b4hd1ndtfhxn8" path="res://Scenes/UI/HUD.tscn" id="8_2rkre"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStates/crouch_state.gd" id="8_cftrw"]
+[ext_resource type="PackedScene" uid="uid://buaqqfsu5v4ep" path="res://Scenes/Behaviors/HealthBehavior.tscn" id="11_dbfjr"]
+[ext_resource type="PackedScene" uid="uid://dgvi23umdq4y8" path="res://Scenes/Behaviors/ManaBehavior.tscn" id="12_o6niw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_opc8m"]
+height = 1.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rnoxv"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_htgsc")
+
+[node name="CrouchingCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+shape = SubResource("CapsuleShape3D_opc8m")
+disabled = true
+
+[node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_rnoxv")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="Camera" type="Camera3D" parent="Head"]
+
+[node name="InteractionRayCast" type="RayCast3D" parent="Head/Camera"]
+target_position = Vector3(0, 0, -3)
+
+[node name="SwordSocket" type="Node3D" parent="Head"]
+transform = Transform3D(0.241482, 0.0247614, -0.0597795, -0.00157975, 0.233157, 0.0901956, 0.0646856, -0.0867443, 0.225369, 0.909801, -0.6, -0.7)
+visible = false
+
+[node name="CustomItem" parent="Head/SwordSocket" instance=ExtResource("2_gbd60")]
+transform = Transform3D(0.609213, -0.393007, -0.688771, 0.772856, 0.0996943, 0.626702, -0.177632, -0.914115, 0.364473, 0, 0, 0)
+
+[node name="ShieldSocket" type="Node3D" parent="Head"]
+transform = Transform3D(0.0854374, -0.12951, 0.19603, 0.0927282, 0.210243, 0.0984855, -0.215875, 0.0390526, 0.119887, -0.0502844, -0.0652921, -0.541972)
+visible = false
+
+[node name="BowSocket" type="Node3D" parent="Head"]
+transform = Transform3D(0.0854374, -0.12951, 0.19603, 0.0927282, 0.210243, 0.0984855, -0.215875, 0.0390526, 0.119887, -0.0502844, -0.0652921, -0.541972)
+visible = false
+
+[node name="ItemSocket" type="Node3D" parent="Head"]
+transform = Transform3D(0.0854374, -0.12951, 0.19603, 0.0927282, 0.210243, 0.0984855, -0.215875, 0.0390526, 0.119887, -0.0502844, -0.0652921, -0.541972)
+visible = false
+
+[node name="CustomItem" parent="Head/ItemSocket" instance=ExtResource("3_xbeow")]
+item_data = ExtResource("4_emh2p")
+
+[node name="Item2Socket" type="Node3D" parent="Head"]
+transform = Transform3D(0.0854374, -0.12951, 0.19603, 0.0927282, 0.210243, 0.0984855, -0.215875, 0.0390526, 0.119887, -0.0502844, -0.0652921, -0.541972)
+visible = false
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_hl7ng")
+initial_state = NodePath("DefaultState")
+
+[node name="DefaultState" type="Node" parent="StateMachine"]
+script = ExtResource("5_4n6ui")
+
+[node name="InventoryState" type="Node" parent="StateMachine"]
+script = ExtResource("6_fqmj7")
+
+[node name="InactiveState" type="Node" parent="StateMachine"]
+script = ExtResource("6_472j7")
+
+[node name="FreeCameraState" type="Node" parent="StateMachine"]
+script = ExtResource("6_84eqe")
+
+[node name="CrouchState" type="Node" parent="StateMachine"]
+script = ExtResource("8_cftrw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("8_2rkre")]
+mouse_filter = 1
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="JumpBuffer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="RayCasts" type="Node3D" parent="."]
+
+[node name="CrouchingRayCast" type="RayCast3D" parent="RayCasts"]
+target_position = Vector3(0, 2, 0)
+
+[node name="FloorRayCast" type="RayCast3D" parent="RayCasts"]
+target_position = Vector3(0, -5, 0)
+
+[node name="Behaviors" type="Node3D" parent="."]
+
+[node name="HealthBehavior" parent="Behaviors" instance=ExtResource("11_dbfjr")]
+
+[node name="ManaBehavior" parent="Behaviors" instance=ExtResource("12_o6niw")]
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+size = Vector3(25, 10, 25)

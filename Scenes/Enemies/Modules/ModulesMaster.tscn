@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdnmwtova4g62"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/modules_master.gd" id="1_v3bsf"]
+
+[node name="ModulesMaster" type="Node3D"]
+script = ExtResource("1_v3bsf")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

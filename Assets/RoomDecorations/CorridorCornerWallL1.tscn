@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://buc4lsm80n4v0"]
+
+[ext_resource type="PackedScene" uid="uid://dgjmsh6y62n5y" path="res://Assets/RoomDecorations/Column.tscn" id="1_ocluh"]
+[ext_resource type="PackedScene" uid="uid://w0s3lcrtvdhp" path="res://Assets/Models/small_wall.glb" id="2_k6b6y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kn7qq"]
+size = Vector3(8, 12, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rpptr"]
+size = Vector3(8, 12, 1.5)
+
+[node name="Wall" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 6, 0)
+shape = SubResource("BoxShape3D_kn7qq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6, 4)
+shape = SubResource("BoxShape3D_rpptr")
+
+[node name="Column2" parent="." instance=ExtResource("1_ocluh")]
+
+[node name="small_wall" parent="." instance=ExtResource("2_k6b6y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, 0)
+
+[node name="small_wall2" parent="." instance=ExtResource("2_k6b6y")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6, 5)

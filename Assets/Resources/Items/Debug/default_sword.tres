@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://coepnwomrnhq7"]
+
+[ext_resource type="Script" path="res://Scripts/Items/item_data.gd" id="2_dcki4"]
+[ext_resource type="Texture2D" uid="uid://creh7x3cvk438" path="res://Assets/Textures/UI/Items/default_sword.png" id="3_2pew4"]
+
+[resource]
+script = ExtResource("2_dcki4")
+item_name = "Default Sword"
+item_description = "This a test Item"
+texture = ExtResource("3_2pew4")
+item_type = 1
+damage_type = 0
+damage = 10
+cooldown = 0.25
+mana_cost = 0
+limited_use = false
+number_uses = 1

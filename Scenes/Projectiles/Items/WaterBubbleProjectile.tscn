@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://dolq0tflp2cei"]
+
+[ext_resource type="PackedScene" uid="uid://b2dqtgjw8hmet" path="res://Scenes/Projectiles/Projectile.tscn" id="1_okhim"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/water_bubble_projectile.gd" id="2_bt5eq"]
+[ext_resource type="Material" uid="uid://dhcx0eq5w8xw4" path="res://Assets/Materials/water.tres" id="3_35pp6"]
+[ext_resource type="PackedScene" uid="uid://dr27sdcb574bc" path="res://Scenes/Particles/WaterDrops.tscn" id="4_4spdi"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_u1kbk"]
+material = ExtResource("3_35pp6")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gbny1"]
+
+[node name="Projectile" instance=ExtResource("1_okhim")]
+script = ExtResource("2_bt5eq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
+mesh = SubResource("SphereMesh_u1kbk")
+
+[node name="WaterDrops" parent="MeshInstance3D" index="0" instance=ExtResource("4_4spdi")]
+
+[node name="WaterDetection" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterDetection" index="0"]
+shape = SubResource("SphereShape3D_gbny1")
+
+[connection signal="area_entered" from="WaterDetection" to="." method="_on_inner_detection_area_entered"]
+[connection signal="area_exited" from="WaterDetection" to="." method="_on_inner_detection_area_exited"]

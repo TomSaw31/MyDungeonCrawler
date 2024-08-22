@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ltjej04ev6e"]
+
+[ext_resource type="PackedScene" uid="uid://6c7fj2rtn1rs" path="res://Assets/Models/quarter_column_l3.glb" id="1_sh6w4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kn7qq"]
+size = Vector3(2, 36, 2)
+
+[node name="Column" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
+shape = SubResource("BoxShape3D_kn7qq")
+
+[node name="quarter_column_l3" parent="." instance=ExtResource("1_sh6w4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)

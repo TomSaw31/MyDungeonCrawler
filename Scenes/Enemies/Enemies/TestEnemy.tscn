@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2xyjlpgqw52c"]
+
+[ext_resource type="PackedScene" uid="uid://bsgwnjiwx5t46" path="res://Scripts/Player/Enemies/BaseEnemy.tscn" id="1_tc1ms"]
+[ext_resource type="PackedScene" uid="uid://cdnmwtova4g62" path="res://Scenes/Enemies/Modules/ModulesMaster.tscn" id="2_c0pf2"]
+[ext_resource type="PackedScene" uid="uid://bml6p2mgus8p4" path="res://Scenes/Enemies/Modules/TestMeleeModule.tscn" id="3_hb65p"]
+
+[node name="BaseEnemy" instance=ExtResource("1_tc1ms")]
+
+[node name="ModulesMaster" parent="." index="2" instance=ExtResource("2_c0pf2")]
+
+[node name="TestMeleeModule" parent="ModulesMaster" index="1" instance=ExtResource("3_hb65p")]

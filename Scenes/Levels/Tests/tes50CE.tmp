@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://8qeru18giarf"]
+
+[ext_resource type="PackedScene" uid="uid://b6pi63knhh4k4" path="res://Assets/Rooms/TestTemple/MainRoom/MainRoom.tscn" id="1_ny5ju"]
+[ext_resource type="PackedScene" uid="uid://c18tp76idhudy" path="res://Scenes/Player/Player.tscn" id="2_gq4vf"]
+[ext_resource type="Resource" uid="uid://c4uuvmqjed37l" path="res://Assets/Resources/Items/default_item.tres" id="3_ay5yn"]
+[ext_resource type="PackedScene" uid="uid://bmfidaj3c5abb" path="res://Scenes/InteractiveObjects/Item.tscn" id="3_q8ixt"]
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_gq4vf")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Item" parent="." instance=ExtResource("3_q8ixt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.06496, -4)
+item_data = ExtResource("3_ay5yn")
+
+[node name="MainRoom" parent="." instance=ExtResource("1_ny5ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

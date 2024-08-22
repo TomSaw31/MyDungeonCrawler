@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://6odsri1xhnxe"]
+
+[ext_resource type="Texture2D" uid="uid://creh7x3cvk438" path="res://Assets/Textures/UI/Items/default_sword.png" id="1_h5qgc"]
+[ext_resource type="Script" path="res://Scripts/UI/SkillTree/skill_button.gd" id="2_svy3l"]
+
+[node name="SkillButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource("1_h5qgc")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_svy3l")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

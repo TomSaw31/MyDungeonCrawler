@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://vgda3jrpvbei"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Inventory/item_slot.gd" id="1_3f3v7"]
+
+[node name="ItemSlot" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 8.0
+offset_bottom = 8.0
+focus_mode = 1
+theme_override_constants/icon_max_width = 64
+flat = true
+script = ExtResource("1_3f3v7")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

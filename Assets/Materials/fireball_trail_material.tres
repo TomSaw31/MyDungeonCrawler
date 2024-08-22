@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dq4b8oa05k0ho"]
+
+[ext_resource type="Shader" uid="uid://sg1xogqxh23f" path="res://Assets/Materials/Shaders/trail_shader.tres" id="1_bwhn5"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bwhn5")
+shader_parameter/Scale = Vector2(0.5, 1)
+shader_parameter/Speed = Vector2(2, 0)

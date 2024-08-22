@@ -1,0 +1,163 @@
+[gd_scene load_steps=13 format=3 uid="uid://b4hd1ndtfhxn8"]
+
+[ext_resource type="Script" path="res://Scripts/UI/HUD/hud.gd" id="1_4j5en"]
+[ext_resource type="PackedScene" uid="uid://d3icps2fqwrip" path="res://Scenes/UI/Inventory.tscn" id="2_eamep"]
+[ext_resource type="PackedScene" uid="uid://bldwuuh7wlwo4" path="res://Scenes/UI/SkillTree.tscn" id="3_c4k0t"]
+[ext_resource type="PackedScene" uid="uid://dixveuwgp5c4l" path="res://Scenes/UI/Bars.tscn" id="4_2u4eo"]
+[ext_resource type="PackedScene" uid="uid://bwgosbcchbb0b" path="res://Scenes/UI/ItemObtained.tscn" id="5_dc324"]
+[ext_resource type="PackedScene" uid="uid://diko8nqh4bx31" path="res://Scenes/UI/Interaction.tscn" id="6_71jio"]
+[ext_resource type="PackedScene" uid="uid://bo54vvm878heg" path="res://Scenes/UI/Crosshair.tscn" id="7_ub12p"]
+[ext_resource type="PackedScene" uid="uid://bkkubli444lbn" path="res://Scenes/UI/ItemBar.tscn" id="8_agt2h"]
+[ext_resource type="Shader" path="res://Assets/Materials/Shaders/underwater.gdshader" id="8_dp4va"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_f5lqg"]
+noise_type = 2
+fractal_type = 2
+fractal_gain = 0.99
+fractal_weighted_strength = 0.75
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aog8v"]
+seamless = true
+seamless_blend_skirt = 0.64
+noise = SubResource("FastNoiseLite_f5lqg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pjq31"]
+shader = ExtResource("8_dp4va")
+shader_parameter/color = Color(0.290196, 0.505882, 1, 1)
+shader_parameter/speed = Vector2(0.03, 0.07)
+shader_parameter/wave_strength = 5.0
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_aog8v")
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4j5en")
+
+[node name="UnderwaterShader" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_pjq31")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Crosshair" parent="." instance=ExtResource("7_ub12p")]
+layout_mode = 1
+mouse_filter = 1
+
+[node name="Bars" parent="." instance=ExtResource("4_2u4eo")]
+layout_mode = 1
+offset_left = -103.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 235.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(128, 0)
+
+[node name="FPS" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="ItemBar" parent="." instance=ExtResource("8_agt2h")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -64.0
+offset_right = 168.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Interaction" parent="." instance=ExtResource("6_71jio")]
+layout_mode = 1
+offset_left = 58.5
+offset_top = 43.0
+offset_right = 223.5
+offset_bottom = 107.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="WeaponsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Weapons"
+
+[node name="ItemsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Items"
+
+[node name="SkillsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Skills"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Settings"
+
+[node name="ExitMenu" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "X"
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 1
+clip_tabs = false
+tabs_visible = false
+all_tabs_in_front = true
+
+[node name="Inventory" parent="MarginContainer/VBoxContainer/TabContainer" instance=ExtResource("2_eamep")]
+visible = false
+layout_mode = 2
+
+[node name="SkillTree" parent="MarginContainer/VBoxContainer/TabContainer" instance=ExtResource("3_c4k0t")]
+clip_contents = true
+layout_mode = 2
+
+[node name="ItemObtained" parent="." instance=ExtResource("5_dc324")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WeaponsButton" to="." method="_on_weapons_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillsButton" to="." method="_on_skills_button_pressed"]

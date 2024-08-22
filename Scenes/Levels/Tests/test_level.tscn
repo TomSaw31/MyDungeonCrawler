@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://8qeru18giarf"]
+
+[ext_resource type="Script" path="res://Scripts/Levels/test_level.gd" id="1_dltt1"]
+[ext_resource type="PackedScene" uid="uid://b6pi63knhh4k4" path="res://Assets/Rooms/TestTemple/MainRoom/MainRoom.tscn" id="1_ny5ju"]
+[ext_resource type="PackedScene" uid="uid://bt80ajcte7a31" path="res://Scenes/InteractiveObjects/Chest.tscn" id="3_gtuso"]
+[ext_resource type="PackedScene" uid="uid://c18tp76idhudy" path="res://Scenes/Player/Player.tscn" id="5_dw8th"]
+[ext_resource type="PackedScene" uid="uid://cahjnxa36y3bo" path="res://Scenes/Components/FloatingComponent.tscn" id="5_qh51f"]
+[ext_resource type="PackedScene" uid="uid://cgatqfilw3igp" path="res://Scenes/InteractiveObjects/Door.tscn" id="6_0bopd"]
+
+[node name="TestLevel" type="Node3D"]
+script = ExtResource("1_dltt1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MainRoom" parent="." instance=ExtResource("1_ny5ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Player" parent="." instance=ExtResource("5_dw8th")]
+
+[node name="Door" parent="." instance=ExtResource("6_0bopd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)
+
+[node name="chest" parent="." instance=ExtResource("3_gtuso")]
+transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0, 0, -3.3875)
+
+[node name="FloatingComponent" parent="chest" instance=ExtResource("5_qh51f")]
+
+[node name="chest2" parent="." instance=ExtResource("3_gtuso")]
+transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, -1.96006, 0, -3.3875)
+
+[node name="FloatingComponent" parent="chest2" instance=ExtResource("5_qh51f")]

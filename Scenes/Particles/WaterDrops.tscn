@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dr27sdcb574bc"]
+
+[ext_resource type="Material" uid="uid://dhcx0eq5w8xw4" path="res://Assets/Materials/water.tres" id="1_aqifn"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_if3c1"]
+material = ExtResource("1_aqifn")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_m1eqe"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, -200), -593.895, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vq8qp"]
+_data = [Vector2(0, 1), 0.0, -0.24113, 0, 0, Vector2(1, 0), -3.98535, 0.0, 0, 0]
+point_count = 2
+
+[node name="WaterDrops" type="CPUParticles3D"]
+amount = 16
+lifetime = 1.5
+mesh = SubResource("SphereMesh_if3c1")
+emission_shape = 1
+emission_sphere_radius = 0.5
+linear_accel_curve = SubResource("Curve_m1eqe")
+scale_amount_curve = SubResource("Curve_vq8qp")
