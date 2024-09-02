@@ -12,7 +12,7 @@ class_name HUD
 ## The skill tree in the inventory
 @onready var skill_tree = $MarginContainer/VBoxContainer/TabContainer/SkillTree
 ## The bars of stats of the HUD (Health, Mana, ...)
-@onready var bars: Bars = $Bars
+@onready var bars: Bars = $Bars/Bars
 ## The interaction
 @onready var interaction = $Interaction
 ## The bar containing the item equipped

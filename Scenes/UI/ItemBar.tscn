@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkkubli444lbn"]
 
 [ext_resource type="Script" path="res://Scripts/UI/HUD/item_bar.gd" id="1_fkwcy"]
-[ext_resource type="Texture2D" uid="uid://cegx6qdvlnwgq" path="res://Assets/Textures/UI/HUD/Bars/item_bar.png" id="2_1iaxr"]
+[ext_resource type="Texture2D" uid="uid://cegx6qdvlnwgq" path="res://Assets/Textures/UI/HUD/Bars/item_bar_slot.png" id="2_xb1ig"]
 
 [node name="ItemBar" type="PanelContainer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 336.0
 offset_bottom = 64.0
@@ -11,40 +12,37 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_fkwcy")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(324, 68)
-layout_mode = 2
-texture = ExtResource("2_1iaxr")
-expand_mode = 1
-stretch_mode = 3
-
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Item0" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("2_xb1ig")
 expand_mode = 1
 
 [node name="Item1" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("2_xb1ig")
 expand_mode = 1
 
 [node name="Item2" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("2_xb1ig")
 expand_mode = 1
 
 [node name="Item3" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("2_xb1ig")
 expand_mode = 1
 
 [node name="Item4" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("2_xb1ig")
 expand_mode = 1

@@ -2,7 +2,7 @@ extends HBoxContainer
 ## The interaction with the info and circular progress bar
 
 ## The offset of the text on the left side to blend with the button indication
-const LEFT_OFFSET: String = "             "
+const LEFT_OFFSET: String = "      "
 ## The offset of the text on the right side
 const RIGHT_OFFSET: String = "   "
 ## The progress bar

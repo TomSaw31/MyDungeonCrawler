@@ -119,10 +119,11 @@ layout_mode = 2
 [node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 texture = ExtResource("4_c8gn2")
-patch_margin_left = 25
-patch_margin_top = 25
-patch_margin_right = 25
-patch_margin_bottom = 25
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 60
+patch_margin_top = 60
+patch_margin_right = 60
+patch_margin_bottom = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 

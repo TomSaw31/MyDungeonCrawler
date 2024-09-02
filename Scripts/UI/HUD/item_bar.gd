@@ -5,7 +5,9 @@ class_name ItemBar
 ## Contains all icons
 @onready var icon_tab: Array[TextureRect] = [$HBoxContainer/Item0,$HBoxContainer/Item1,$HBoxContainer/Item2,$HBoxContainer/Item3,$HBoxContainer/Item4]
 ## The default color of the unselected items
-const UNSELECTED_COLOR: Color = Color(128,128,128,0.5)
+const UNSELECTED_COLOR: Color = Color(0.5,0.5,0.5,0.5)
+## The default icon texture when the slot is empty
+const DEFAULT_TEXTURE: Texture2D = preload("res://Assets/Textures/UI/HUD/Bars/item_bar_slot.png")
 
 func _ready() -> void:
 	EVENTS.connect("equipped_items_switched", update_item_bar)
@@ -14,7 +16,7 @@ func _ready() -> void:
 func update_item_bar(items: Array[ItemData]) -> void:
 	for i in range(5):
 		if items[i] == null:
-			icon_tab[i].texture = null
+			icon_tab[i].texture = DEFAULT_TEXTURE
 		else:
 			icon_tab[i].texture = items[i].texture
 
@@ -23,4 +25,4 @@ func update_item_bar(items: Array[ItemData]) -> void:
 func update_selected(index: int) -> void:
 	for icon in icon_tab:
 		icon.modulate = UNSELECTED_COLOR
-	icon_tab[index].modulate = Color(255,255,255,1)
+	icon_tab[index].modulate = Color(1,1,1,1)

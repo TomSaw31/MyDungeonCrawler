@@ -224,7 +224,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-pivot_offset = Vector2(20, 20)
+pivot_offset = Vector2(32, 32)
 expand_mode = 1
 
 [node name="Lock" type="TextureRect" parent="."]
@@ -233,6 +233,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(32, 32)
 expand_mode = 1
 

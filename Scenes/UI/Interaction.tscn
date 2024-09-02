@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" path="res://Scripts/UI/HUD/interaction.gd" id="1_wpsxv"]
 [ext_resource type="Texture2D" uid="uid://dkdp6ikt1cbr8" path="res://Assets/Textures/UI/HUD/Interaction/empty_key_button.png" id="2_15nkl"]
-[ext_resource type="Texture2D" uid="uid://dh0882lvs341s" path="res://Assets/Textures/UI/HUD/Interaction/empty_key_button_progress.png" id="3_5fakw"]
+[ext_resource type="Texture2D" uid="uid://dwmqhlswdh4cb" path="res://Assets/Textures/UI/HUD/Interaction/circular_progress.png" id="3_yf32f"]
 [ext_resource type="Texture2D" uid="uid://d1uvpwcmoqee4" path="res://Assets/Textures/UI/HUD/Interaction/empty_interact_message.png" id="4_us7kp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2l84h"]
-font_size = 24
+font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_iuf6u"]
+font_size = 32
 
 [sub_resource type="Animation" id="Animation_6e7vd"]
 resource_name = "fade"
@@ -49,7 +50,6 @@ _data = {
 }
 
 [node name="Interaction" type="HBoxContainer"]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -61,7 +61,7 @@ offset_right = 61.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.375, 0.375)
 alignment = 2
 script = ExtResource("1_wpsxv")
 
@@ -80,7 +80,7 @@ step = 0.01
 value = 1.0
 fill_mode = 4
 texture_under = ExtResource("2_15nkl")
-texture_progress = ExtResource("3_5fakw")
+texture_progress = ExtResource("3_yf32f")
 
 [node name="KeyText" type="Label" parent="PanelContainer"]
 layout_mode = 2
@@ -97,10 +97,11 @@ theme_override_constants/margin_bottom = 10
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2
 texture = ExtResource("4_us7kp")
-patch_margin_left = 12
-patch_margin_top = 12
-patch_margin_right = 12
-patch_margin_bottom = 12
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
@@ -109,19 +110,13 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer"]
 layout_mode = 2
-text = "             Open   "
+text = "       Open   "
 label_settings = SubResource("LabelSettings_iuf6u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_bmgdb")
 }
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-light_mask = 2
-position = Vector2(32, 32)
-blend_mode = 1
-texture = ExtResource("2_15nkl")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

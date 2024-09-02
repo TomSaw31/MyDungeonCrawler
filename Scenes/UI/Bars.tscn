@@ -71,16 +71,13 @@ _data = {
 }
 
 [node name="Bars" type="VBoxContainer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -260.0
-offset_right = 128.0
-grow_vertical = 0
+offset_right = 256.0
+offset_bottom = 516.0
 rotation = 3.14159
-pivot_offset = Vector2(64, 130)
+pivot_offset = Vector2(128, 258)
 size_flags_horizontal = 0
 size_flags_vertical = 8
+theme_override_constants/separation = 0
 alignment = 2
 script = ExtResource("1_esupi")
 
@@ -88,7 +85,8 @@ script = ExtResource("1_esupi")
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-step = 0.1
+step = 0.0
+value = 49.825
 fill_mode = 8
 texture_under = ExtResource("2_2vay3")
 texture_over = ExtResource("3_eux6y")
@@ -96,22 +94,26 @@ texture_progress = ExtResource("4_srd5y")
 
 [node name="Control" type="Control" parent="HealthBar"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 3.14159
-pivot_offset = Vector2(64, 64)
 
 [node name="HealthLevel" type="Label" parent="HealthBar/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -113.0
+offset_top = -17.0
+offset_right = 113.0
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(64, 64)
 label_settings = SubResource("LabelSettings_ryylx")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -126,7 +128,7 @@ libraries = {
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-step = 0.1
+step = 0.0
 fill_mode = 8
 texture_under = ExtResource("2_2vay3")
 texture_over = ExtResource("3_eux6y")
@@ -134,19 +136,26 @@ texture_progress = ExtResource("5_kw0tu")
 
 [node name="Control" type="Control" parent="ManaBar"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 3.14159
-pivot_offset = Vector2(64, 64)
 
 [node name="ManaLevel" type="Label" parent="ManaBar/Control"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.4999
+offset_top = -17.0001
+offset_right = 50.5001
+offset_bottom = 16.9999
 grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_ryylx")

@@ -37,7 +37,6 @@ func spawn_columns(columns_scenes: Array) -> void:
 		scene.rotation.y = deg_to_rad(180 - i * 90)
 		add_child(scene)
 
-
 func spawn_corridors(walls_scenes: Array, walls_angles: Array) -> void:
 	var scene: Node3D
 	for i in range(4):
@@ -90,3 +89,23 @@ func _spawn_main_room_columns(columns_scenes: Array) -> void:
 		scene.position = main_room_columns_positions[i]
 		scene.rotation.y = deg_to_rad(180 - 90 * i)
 		add_child(scene)
+
+## Called when entering the room
+func enter_room() -> void:
+	pass
+
+## Called when exiting the state
+func exit_room() -> void:
+	call_deferred("queue_free")
+
+## Called every frame when the state is active
+func update(_delta: float) -> void:
+	pass
+
+## Called every physics frame when the state is active
+func physics_room(_delta: float) -> void:
+	pass
+
+## Called when receiving an input and the state is active
+func input_room(_event: InputEvent) -> void:
+	pass

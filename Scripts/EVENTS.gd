@@ -16,3 +16,5 @@ signal water_level_changed(_level: float)
 signal equipped_items_switched(_items: Array[ItemData])
 ## Signal triggered when the inventory is opened / closed (used to stop process)
 signal inventory_opened(_b: bool)
+## Signal triggered when the player is entering a room
+signal player_active_room_changed()

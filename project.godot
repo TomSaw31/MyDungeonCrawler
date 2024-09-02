@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dungeon Crawler"
-run/main_scene="res://Scenes/Levels/Tests/test_level.tscn"
+run/main_scene="res://Scenes/Levels/Tests/test_dungeon.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -29,9 +29,8 @@ gdscript/warnings/integer_division=0
 
 [display]
 
-window/size/viewport_width=864
-window/size/viewport_height=486
-window/stretch/mode="canvas_items"
+window/size/viewport_width=1728
+window/size/viewport_height=972
 
 [file_customization]
 

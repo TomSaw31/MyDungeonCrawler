@@ -1,8 +1,9 @@
 extends Node3D
-## TODO
+
 const MIN_ROOMS_LEFT_WING = 7
 const MAX_ROOMS_LEFT_WING = 12
 const MAX_ROOMS_ENTRANCE = 5
+const ROOM_SIZE: int = 36
 var s_location: Vector2i
 var main_room_center: Vector2i
 
@@ -25,15 +26,30 @@ const MAIN_ROOM_AREA = 1
 const LEFT_WING_AREA = 2
 
 
-var map_rooms = {}
-var map_areas = {}
-var entrance_rooms = []
-var left_wing_rooms = []
+var map_rooms: Dictionary = {}
+var map_areas: Dictionary = {}
+var entrance_rooms: Array = []
+var left_wing_rooms: Array = []
+
+var active_rooms: Dictionary = {}
+
+
 
 func _ready():
+	EVENTS.connect("player_active_room_changed", change_active_room)
 	_generate_dungeon()
 	_show_dungeon()
-	_spawn_rooms()
+	EVENTS.call_deferred("emit_signal", "player_active_room_changed")
+	## DEBUG
+	for key in map_rooms.keys():
+		var scene: Room = _get_room_scene(key)
+		if scene != null:
+			active_rooms[key] = scene
+			scene.position = Vector3(key.x * ROOM_SIZE,0 , key.y * ROOM_SIZE)
+			scene.doors = _calculate_room_type(key)
+			get_tree().root.add_child.call_deferred(scene)
+			scene.enter_room()
+
 
 func _generate_dungeon():
 	_generate_spawn()
@@ -160,14 +176,6 @@ func _show_dungeon():
 				chaine += " "
 		print(chaine)
 
-func _spawn_rooms():
-	for key in map_rooms.keys():
-		var scene: Room = _get_room_scene(key)
-		if scene != null:
-			scene.position = Vector3(key.x * 36,0 , key.y * 36)
-			scene.doors = _calculate_room_type(key)
-			get_tree().root.add_child.call_deferred(scene)
-
 func _calculate_room_type(pos: Vector2i) -> String:
 	var res: String = ""
 	if pos != main_room_center:
@@ -229,3 +237,37 @@ func _get_adjacent_rooms(r_pos: Vector2i) -> Array:
 	else:
 		rooms.append(null)
 	return rooms
+
+func change_active_room() -> void:
+	var player_position: Vector3 = GAME.player.position
+	var positions: Array[Vector2i] = []
+	for i in range(-2,3):
+		for j in range(-2,3):
+			var room_pos: Vector2i = Vector2i(int(player_position.x/ROOM_SIZE) + i, int(player_position.z/ROOM_SIZE) + j)
+			if room_pos in map_rooms.keys():
+				positions.append(room_pos)
+	for pos in positions:
+		if pos not in active_rooms.keys():
+			var scene: Room = _get_room_scene(pos)
+			if scene != null:
+				active_rooms[pos] = scene
+				scene.position = Vector3(pos.x * ROOM_SIZE,0 , pos.y * ROOM_SIZE)
+				scene.doors = _calculate_room_type(pos)
+				get_tree().root.add_child.call_deferred(scene)
+				scene.enter_room()
+	for key in active_rooms.keys():
+		if key not in positions:
+			active_rooms[key].exit_room()
+			active_rooms.erase(key)
+
+func _process(delta: float) -> void:
+	for key in active_rooms.keys():
+		active_rooms[key].update(delta)
+
+func _physics_process(delta: float) -> void:
+	for key in active_rooms.keys():
+		active_rooms[key].physics_room(delta)
+
+func _input(event: InputEvent) -> void:
+	for key in active_rooms.keys():
+		active_rooms[key].input_room(event)

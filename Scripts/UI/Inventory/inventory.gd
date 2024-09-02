@@ -13,6 +13,7 @@ const UNSELECTED_COLOR: Color = Color(0.5, 0.5, 0.5, 0.5)
 ## Represent the current selected slot
 var selected_slot: int = 0
 
+
 ## Refresh all items found in the inventory
 func refresh() -> void:
 	for item_slot in item_slots:
