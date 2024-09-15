@@ -7,6 +7,9 @@ var time_scale: float = 1
 ## The main player of the game
 var player: Player
 
+## The player spawning location
+var spawning_position: Vector3 = Vector3(0,0,0)
+
 ## Keep track if the player is using a controller or a keyboard based on the last input
 var is_using_keyboard: bool = true
 

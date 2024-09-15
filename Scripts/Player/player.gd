@@ -99,8 +99,10 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	switch_item(0)
 	EVENTS.equipped_items_switched.connect(update_equipped_items_in_hand)
+	EVENTS.map_generated.connect(spawn_player)
 	mana_component.update_mana()
 	health_component.update_health()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_full_screen"):
@@ -187,6 +189,11 @@ func check_interaction() -> void:
 	if collider != null and collider.has_node("InteractionComponent"):
 		interaction_target = collider
 		hud.show_interaction(interaction_target.get_node("InteractionComponent"))
+
+## Spawn the player
+func spawn_player() -> void:
+	global_position = GAME.spawning_position
+	state_machine.set_state("DefaultState")
 
 
 ## Create an interaction between the player and the interaction target

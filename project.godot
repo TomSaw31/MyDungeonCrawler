@@ -29,8 +29,8 @@ gdscript/warnings/integer_division=0
 
 [display]
 
-window/size/viewport_width=1728
-window/size/viewport_height=972
+window/size/viewport_width=864
+window/size/viewport_height=486
 
 [file_customization]
 

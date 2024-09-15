@@ -74,7 +74,7 @@ visible = false
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_hl7ng")
-initial_state = NodePath("DefaultState")
+initial_state = NodePath("InactiveState")
 
 [node name="DefaultState" type="Node" parent="StateMachine"]
 script = ExtResource("5_4n6ui")
